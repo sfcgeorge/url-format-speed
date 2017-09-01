@@ -1,6 +1,9 @@
 class TestsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: :test
+  skip_before_action :verify_authenticity_token
 
-  def test
+  def test_nested
+  end
+
+  def test_nothing
   end
 end
