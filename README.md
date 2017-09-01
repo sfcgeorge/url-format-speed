@@ -89,3 +89,15 @@ Processing by TestsController#test_nested as JS
   Rendered tests/test_nested.js.erb (17.2ms)
 Completed 200 OK in 24ms (Views: 22.0ms)
 ```
+
+
+## Doctor says just don't do that
+
+The problem is Rails URL helpers don't generate the .js so this performance issue happens by default everywhere you do a remote JS call. Having to specify format everywhere would be a pain:
+
+```ruby
+# I'd rather not have to specify `format: :js` everywhere.
+link_to "I'm Sorry", podbay_doors_user_path(@dave, format: :js), remote: true
+```
+
+One could hack Rails UJS to stick a .js on the end of every URL it AJAXes automagically but I feel like there's something nefarious going on in the depths of Rails that should be fixed instead.
